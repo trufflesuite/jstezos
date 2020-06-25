@@ -1,1 +1,1 @@
-# pytezos
+# jstezos
