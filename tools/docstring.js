@@ -3,6 +3,15 @@ import * as inspect from 'inspect';
 import * as types from 'types';
 import {update_wrapper} from 'functools';
 var __interactive_mode__;
+
+function applyMixins(derivedCtor, baseCtors) {
+baseCtors.forEach(baseCtor => {
+Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
+Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
+});
+});
+}
+
 function is_interactive() {
     import * as main from '@main__';
     return (! ("__file__" in main));
@@ -44,5 +53,6 @@ function get_class_docstring(class_type, attr_filter = default_attr_filter, exte
     }
     return "\n".join(map(attr_format, filter(attr_filter, dir(class_type))));
 }
+export {default_attr_filter, get_attr_docstring, get_class_docstring, is_interactive, __interactive_mode__};
 
 //# sourceMappingURL=docstring.js.map
