@@ -133,5 +133,6 @@ class Interop {
         return this._spawn({"shell": shell, "key": key});
     }
 }
+export {Interop, KeyHash, default_shell, default_key, default_key_hash};
 
 //# sourceMappingURL=interop.js.map
