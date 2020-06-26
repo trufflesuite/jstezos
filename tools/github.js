@@ -13,9 +13,8 @@ function create_deployment(repo_slug, oauth_token, environment, ref = "master") 
     return requests.post({"url": join("https://api.github.com/repos", repo_slug, "deployments"), "headers": {"Accept": "application/vnd.github.ant-man-preview+json", "Authorization": `token ${oauth_token}`}, "json": {"ref": ref, "environment": environment, "required_contexts": []}}).json();
 }
 function create_deployment_status(repo_slug, oauth_token, deployment_id, state, environment, environment_url = null) {
-    if(['success', 'failure'].includes(state)){
-        return requests.post({"url": join("https://api.github.com/repos", repo_slug, "deployments", deployment_id.toString(), "statuses"), "headers": {"Accept": "application/vnd.github.flash-preview+json", "Authorization": `token ${oauth_token}`}, "json": {"state": state, "environment": environment, "environment_url": environment_url}}).json();
-    }
+    return requests.post({"url": join("https://api.github.com/repos", repo_slug, "deployments", deployment_id.toString(), "statuses"), "headers": {"Accept": "application/vnd.github.flash-preview+json", "Authorization": `token ${oauth_token}`}, "json": {"state": state, "environment": environment, "environment_url": environment_url}}).json();
 }
+export {create_deployment, create_deployment_status};
 
 //# sourceMappingURL=github.js.map
