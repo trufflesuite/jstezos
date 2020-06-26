@@ -2,7 +2,7 @@ import {logger} from 'loguru';
 import {is_pkh} from 'pytezos/encoding';
 import {Key} from 'pytezos/crypto';
 import {mainnet} from 'pytezos/rpc';
-class OTP {
+export default class OTP {
     constructor(key, interval = 5, shell = mainnet) {
         /*
         :param key: secret key (encrypted/unencrypted), public key or public key hash, all base58 encoded
