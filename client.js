@@ -129,5 +129,6 @@ class PyTezosClient extends Interop {
 }
 _pj.set_decorators(PyTezosClient, {"_get_contract_interface": [lru_cache({"maxsize": null})]});
 applyMixins(PyTezosClient, [ContentMixin])
+export {PyTezosClient};
 
 //# sourceMappingURL=client.js.map
