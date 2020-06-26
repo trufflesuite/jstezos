@@ -186,4 +186,6 @@ if ((__name__ === "__main__")) {
     main();
 }
 
+export { PyTezosCli, get_contract, main, make_bcd_link, kernel_js_path, kernel_json }
+
 //# sourceMappingURL=cli.js.map
