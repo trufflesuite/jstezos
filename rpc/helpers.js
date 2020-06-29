@@ -1,4 +1,13 @@
 import {RpcQuery} from 'pytezos/rpc/query';
+
+function applyMixins(derivedCtor, baseCtors) {
+baseCtors.forEach(baseCtor => {
+Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
+Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
+});
+});
+}
+
 class BakingRightsQuery extends RpcQuery {
     __call__(level = null, cycle = null, delegate = null, max_priority = null, _all = null) {
         /*
@@ -257,5 +266,6 @@ class ScriptsTypecheckCodeQuery extends RpcQuery {
         return this._post({"json": expression});
     }
 }
+export {BakingRightsQuery, ForgeBlockHeaderQuery, ForgeOperationsQuery, ForgeProtocolDataQuery, ParseBlockQuery, ParseOperationsQuery, PreapplyBlockQuery, PreapplyOperationsQuery, ScriptsEntrypoint, ScriptsEntrypoints, ScriptsPackDataQuery, ScriptsRunCodeQuery, ScriptsRunOperationQuery, ScriptsTraceCodeQuery, ScriptsTypecheckCodeQuery};
 
 //# sourceMappingURL=helpers.js.map
