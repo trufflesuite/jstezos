@@ -1,4 +1,13 @@
 import {Decimal} from 'decimal';
+
+function applyMixins(derivedCtor, baseCtors) {
+baseCtors.forEach(baseCtor => {
+Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
+Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
+});
+});
+}
+
 function format_mutez(value) {
     if ((value === null)) {
         value = 0;
@@ -173,5 +182,6 @@ class ContentMixin {
         return this.operation({"kind": "delegation", "source": source, "fee": format_mutez(fee), "counter": counter.toString(), "gas_limit": gas_limit.toString(), "storage_limit": storage_limit.toString(), "delegate": delegate});
     }
 }
+export {ContentMixin, format_mutez, format_tez};
 
 //# sourceMappingURL=content.js.map
