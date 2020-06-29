@@ -1,5 +1,14 @@
 import {forge_operation} from 'pytezos/operation/forge';
 var hard_gas_limit_per_operation, hard_storage_limit_per_operation, minimal_fees, minimal_nanotez_per_byte, minimal_nanotez_per_gas_unit;
+
+function applyMixins(derivedCtor, baseCtors) {
+baseCtors.forEach(baseCtor => {
+Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
+Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
+});
+});
+}
+
 hard_gas_limit_per_operation = 1040000;
 hard_storage_limit_per_operation = 60000;
 minimal_fees = 100;
@@ -29,5 +38,6 @@ function burn_cap(content) {
     values = {"reveal": 0, "delegation": 0, "origination": 257, "transaction": (content.get("parameters") ? 0 : 257)};
     return values.get(content["kind"]);
 }
+export {burn_cap, calculate_fee, default_fee, default_gas_limit, default_storage_limit, hard_gas_limit_per_operation, hard_storage_limit_per_operation, minimal_fees, minimal_nanotez_per_byte, minimal_nanotez_per_gas_unit};
 
 //# sourceMappingURL=fees.js.map
