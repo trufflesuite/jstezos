@@ -17,5 +17,6 @@
   },
   "homepage": "https://github.com/trufflesuite/jstezos#readme",
   "dependencies": {
+    "lru-cache": "^5.1.1"
   }
 }
