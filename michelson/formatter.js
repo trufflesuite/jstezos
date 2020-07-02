@@ -1,6 +1,5 @@
 import * as json from 'json';
 import {datetime} from 'datetime';
-import {pprint} from 'pprint';
 var _pj;
 var line_size;
 
@@ -181,7 +180,7 @@ function micheline_to_michelson(data, inline = false, wrap = false) {
         }
     } catch(e) {
         if (((e instanceof KeyError) || (e instanceof IndexError) || (e instanceof TypeError))) {
-            pprint(data, {"compact": true});
+            console.log(JSON.stringify(data));
             throw new MichelsonFormatterError(e.args);
         } else {
             throw e;
