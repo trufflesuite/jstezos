@@ -1,6 +1,5 @@
 import * as yaml from 'yaml';
 import {deepcopy} from 'copy';
-import {pformat} from 'pprint';
 import {MichelsonParser, MichelsonParserError} from 'pytezos/michelson/grammar';
 import {micheline_to_michelson, michelson_to_micheline} from 'pytezos/michelson/converter';
 import {MichelsonRuntimeError, do_interpret} from 'pytezos/repl/control';
@@ -212,7 +211,7 @@ function format_stderr(error) {
         if ((error instanceof MichelsonParserError)) {
             [evalue, traceback] = [error.message, `at line ${error.line}, pos ${error.pos}`];
         } else {
-            [evalue, traceback] = [pformat(error.args, {"compact": true}), ""];
+            [evalue, traceback] = [JSON.stringify(error.args), ""];
         }
     }
     return {"name": ename, "value": evalue, "trace": traceback};
