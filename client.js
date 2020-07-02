@@ -1,4 +1,4 @@
-import {lru_cache} from 'functools';
+import lru_cache from 'lru-cache';
 import {datetime} from 'datetime';
 import {Decimal} from 'decimal';
 import {OperationGroup} from 'pytezos/operation/group';
@@ -119,7 +119,7 @@ class PyTezosClient extends Interop {
         return this._get_contract_interface(contract_id, {"factory": NonFungibleTokenImpl});
     }
 }
-_pj.set_decorators(PyTezosClient, {"_get_contract_interface": [lru_cache({"maxsize": null})]});
+_pj.set_decorators(PyTezosClient, {"_get_contract_interface": [new lru_cache()]});
 applyMixins(PyTezosClient, [ContentMixin])
 export {PyTezosClient};
 
