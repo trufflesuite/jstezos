@@ -4,14 +4,6 @@ import {pprint} from 'pprint';
 var _pj;
 var line_size;
 
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
-
 function _pj_snippets(container) {
     function _assert(comp, msg) {
         function PJAssertionError(message) {
@@ -47,14 +39,6 @@ function _pj_snippets(container) {
 }
 _pj = {};
 _pj_snippets(_pj);
-
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
 
 line_size = 100;
 function format_timestamp(timestamp) {

@@ -1,14 +1,6 @@
 import * as requests from 'requests';
 import {join} from 'os/path';
 
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
-
 function create_deployment(repo_slug, oauth_token, environment, ref = "master") {
     return requests.post({"url": join("https://api.github.com/repos", repo_slug, "deployments"), "headers": {"Accept": "application/vnd.github.ant-man-preview+json", "Authorization": `token ${oauth_token}`}, "json": {"ref": ref, "environment": environment, "required_contexts": []}}).json();
 }

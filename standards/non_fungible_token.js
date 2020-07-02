@@ -4,14 +4,6 @@ import {michelson_to_micheline} from 'pytezos/michelson/micheline';
 var _pj;
 var parameter_tz, storage_tz;
 
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
-
 function _pj_snippets(container) {
     function set_decorators(cls, props) {
         var deco, decos;
@@ -37,14 +29,6 @@ function _pj_snippets(container) {
 }
 _pj = {};
 _pj_snippets(_pj);
-
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
 
 parameter_tz = "\nparameter \n    (or (or (nat %burn :token_id) (pair %mint (address %owner) (nat %token_id)))\n        (pair %transfer (address %destination) (nat %token_id)))\n";
 storage_tz = "storage (map nat address)";

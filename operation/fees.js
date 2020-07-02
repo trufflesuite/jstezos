@@ -1,14 +1,6 @@
 import {forge_operation} from 'pytezos/operation/forge';
 var hard_gas_limit_per_operation, hard_storage_limit_per_operation, minimal_fees, minimal_nanotez_per_byte, minimal_nanotez_per_gas_unit;
 
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
-
 hard_gas_limit_per_operation = 1040000;
 hard_storage_limit_per_operation = 60000;
 minimal_fees = 100;
