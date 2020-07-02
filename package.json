@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/trufflesuite/jstezos#readme",
   "dependencies": {
+    "js-fire": "^0.7.3",
     "lru-cache": "^5.1.1"
   },
   "devDependencies": {

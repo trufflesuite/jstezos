@@ -1,6 +1,6 @@
 import {glob} from 'glob';
 import {resolve, dirname, join} from 'path';
-import * as fire from 'fire';
+import fire from 'js-fire';
 import {Contract, RpcError, pytezos} from 'pytezos';
 import {generate_docstring} from 'pytezos/michelson/docstring';
 import {OperationResult} from 'pytezos/operation/result';
@@ -179,7 +179,7 @@ class PyTezosCli {
     }
 }
 function main() {
-    return new fire.Fire(PyTezosCli);
+    return new fire(PyTezosCli);
 }
 if ((__name__ === "__main__")) {
     main();
