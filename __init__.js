@@ -8,7 +8,7 @@ Just type:
 >>> pytezos
 
 And follow the interactive documentation.*/
-import {RpcProvider, babylonnet, localhost, mainnet, zeronet} from 'pytezos/rpc';
+import {RpcProvider, babylonnet, localhost, mainnet, zeronet} from './rpc/__init__';
 import {*} from 'pytezos/rpc/errors';
 import {Key} from 'pytezos/crypto';
 import {Proto} from 'pytezos/proto';
