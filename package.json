@@ -4,6 +4,7 @@
   "description": "",
   "main": "__init__.js",
   "scripts": {
+    "build": "babel . -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +19,10 @@
   "homepage": "https://github.com/trufflesuite/jstezos#readme",
   "dependencies": {
     "lru-cache": "^5.1.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4"
   }
 }
