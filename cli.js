@@ -2,9 +2,9 @@ import {glob} from 'glob';
 import {resolve, dirname, join} from 'path';
 import fire from 'js-fire';
 import {Contract, Errors, pytezos} from './__init__';
-import {generate_docstring} from 'pytezos/michelson/docstring';
-import {OperationResult} from 'pytezos/operation/result';
-import {create_deployment, create_deployment_status} from 'pytezos/tools/github';
+import {generate_docstring} from './michelson/docstring';
+import {OperationResult} from './operation/result';
+import {create_deployment, create_deployment_status} from './tools/github';
 var _pj;
 var kernel_js_path, kernel_json;
 function _pj_snippets(container) {
