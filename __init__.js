@@ -9,7 +9,7 @@ Just type:
 
 And follow the interactive documentation.*/
 import {RpcProvider, babylonnet, localhost, mainnet, zeronet} from './rpc/__init__';
-import {*} from 'pytezos/rpc/errors';
+import * as Errors from './rpc/errors';
 import {Key} from 'pytezos/crypto';
 import {Proto} from 'pytezos/proto';
 import {Contract} from 'pytezos/michelson/contract';
