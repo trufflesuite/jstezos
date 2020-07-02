@@ -1,7 +1,7 @@
 import {glob} from 'glob';
 import {resolve, dirname, join} from 'path';
 import fire from 'js-fire';
-import {Contract, RpcError, pytezos} from 'pytezos';
+import {Contract, Errors, pytezos} from './__init__';
 import {generate_docstring} from 'pytezos/michelson/docstring';
 import {OperationResult} from 'pytezos/operation/result';
 import {create_deployment, create_deployment_status} from 'pytezos/tools/github';
@@ -105,7 +105,7 @@ class PyTezosCli {
                 opg.inject({"_async": false});
                 console.log(`Activation succeeded! Claimed balance: ${ptz.balance()} ꜩ`);
             } catch(e) {
-                if ((e instanceof RpcError)) {
+                if ((e instanceof Errors.RpcError)) {
                     console.log(JSON.stringify(e));
                     exit((- 1));
                 } else {
@@ -122,7 +122,7 @@ class PyTezosCli {
             opg.inject({"_async": false});
             console.log(`Your key ${ptz.key.public_key_hash()} is now active and revealed`);
         } catch(e) {
-            if ((e instanceof RpcError)) {
+            if ((e instanceof Errors.RpcError)) {
                 console.log(JSON.stringify(e));
                 exit((- 1));
             } else {
@@ -169,7 +169,7 @@ class PyTezosCli {
                 console.log(JSON.stringify(status));
             }
         } catch(e) {
-            if ((e instanceof RpcError)) {
+            if ((e instanceof Errors.RpcError)) {
                 console.log(JSON.stringify(e));
                 exit((- 1));
             } else {

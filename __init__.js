@@ -21,4 +21,6 @@ import {NonFungibleTokenImpl} from './standards/non_fungible_token';
 var pytezos;
 pytezos = new PyTezosClient();
 
+export { Contract, Errors, pytezos }
+
 //# sourceMappingURL=__init__.js.map

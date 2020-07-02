@@ -26,6 +26,6 @@ class MichelsonScriptRejected extends RpcError {
     A FAILWITH instruction was reached
     */
 }
-export {MichelsonBadContractParameter, MichelsonBadReturn, MichelsonRuntimeError, MichelsonScriptRejected};
+export {MichelsonBadContractParameter, MichelsonBadReturn, MichelsonRuntimeError, MichelsonScriptRejected, RpcError };
 
 //# sourceMappingURL=errors.js.map
