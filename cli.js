@@ -1,5 +1,5 @@
 import {glob} from 'glob';
-import {abspath, dirname, join} from 'os/path';
+import {resolve, dirname, join} from 'path';
 import {pprint} from 'pprint';
 import * as fire from 'fire';
 import {Contract, RpcError, pytezos} from 'pytezos';
@@ -43,7 +43,7 @@ function get_contract(path) {
     if ((path === null)) {
         files = glob("*.tz");
         _pj._assert((files.length === 1), null);
-        contract = Contract.from_file(abspath(files[0]));
+        contract = Contract.from_file(resolve(files[0]));
     } else {
         if (any(map((x) => {
     return path.startswith(x);
