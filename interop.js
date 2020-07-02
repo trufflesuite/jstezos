@@ -1,8 +1,8 @@
 import {existsSync} from 'fs';
 import {homedir} from 'os';
-import {RpcNode, ShellQuery, babylonnet, carthagenet, localhost, mainnet, pool, zeronet} from 'pytezos/rpc';
-import {Key, is_installed} from 'pytezos/crypto';
-import {is_key, is_pkh} from 'pytezos/encoding';
+import {RpcNode, ShellQuery, babylonnet, carthagenet, localhost, mainnet, pool, zeronet} from './rpc/__init__';
+import {Key, is_installed} from './crypto';
+import {is_key, is_pkh} from './encoding';
 var _pj;
 var default_key, default_key_hash, default_shell;
 
