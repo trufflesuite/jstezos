@@ -5,14 +5,6 @@ import {is_key, is_pkh} from 'pytezos/encoding';
 var _pj;
 var default_key, default_key_hash, default_shell;
 
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
-
 function _pj_snippets(container) {
     function in_es6(left, right) {
         if (((right instanceof Array) || ((typeof right) === "string"))) {
@@ -30,14 +22,6 @@ function _pj_snippets(container) {
 }
 _pj = {};
 _pj_snippets(_pj);
-
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
 
 default_shell = "carthagenet";
 default_key = "edsk33N474hxzA4sKeWVM6iuGNGDpX2mGwHNxEA4UbWS8sW3Ta3NKH";

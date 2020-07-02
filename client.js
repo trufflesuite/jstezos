@@ -10,14 +10,6 @@ import {get_class_docstring} from 'pytezos/tools/docstring';
 import {NonFungibleTokenImpl} from 'pytezos/standards/non_fungible_token';
 var _pj;
 
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
-
 function _pj_snippets(container) {
     function set_decorators(cls, props) {
         var deco, decos;
