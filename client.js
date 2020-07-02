@@ -1,5 +1,5 @@
 import lru_cache from 'lru-cache';
-import {Decimal} from 'decimal';
+import {Decimal} from 'decimal.js';
 import {OperationGroup} from './operation/group';
 import {ContentMixin} from './operation/content';
 import {ContractInterface} from './michelson/interface';
