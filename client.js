@@ -1,12 +1,12 @@
 import lru_cache from 'lru-cache';
 import {Decimal} from 'decimal';
-import {OperationGroup} from 'pytezos/operation/group';
-import {ContentMixin} from 'pytezos/operation/content';
-import {ContractInterface} from 'pytezos/michelson/interface';
-import {Contract} from 'pytezos/michelson/contract';
-import {Interop} from 'pytezos/interop';
-import {get_class_docstring} from 'pytezos/tools/docstring';
-import {NonFungibleTokenImpl} from 'pytezos/standards/non_fungible_token';
+import {OperationGroup} from './operation/group';
+import {ContentMixin} from './operation/content';
+import {ContractInterface} from './michelson/interface';
+import {Contract} from './michelson/contract';
+import {Interop} from './interop';
+import {get_class_docstring} from './tools/docstring';
+import {NonFungibleTokenImpl} from './standards/non_fungible_token';
 var _pj;
 
 function _pj_snippets(container) {
