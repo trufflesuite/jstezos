@@ -1,5 +1,4 @@
 import lru_cache from 'lru-cache';
-import {datetime} from 'datetime';
 import {Decimal} from 'decimal';
 import {OperationGroup} from 'pytezos/operation/group';
 import {ContentMixin} from 'pytezos/operation/content';
@@ -94,9 +93,9 @@ class PyTezosClient extends Interop {
         var constants, dt, first_delay, ts;
         constants = this.shell.block.context.constants();
         ts = this.shell.head.header()["timestamp"];
-        dt = datetime.strptime(ts, "%Y-%m-%dT%H:%M:%SZ");
+        dt = new Date(); // TODO - CONVERT this ---> datetime.strptime(ts, "%Y-%m-%dT%H:%M:%SZ");
         first_delay = constants["time_between_blocks"][0];
-        return (Number.parseInt((dt - datetime(1970, 1, 1)).total_seconds()) + Number.parseInt(first_delay));
+        return (Number.parseInt((dt - new Date(1970, 1, 1)).total_seconds()) + Number.parseInt(first_delay));
     }
     _get_contract_interface(contract_id, factory = Contract) {
         return new ContractInterface({"address": contract_id, "shell": this.shell, "key": this.key, "factory": factory});
