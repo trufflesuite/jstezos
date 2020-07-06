@@ -1,6 +1,5 @@
 import lru_cache from 'lru-cache';
 import {hexlify} from 'binascii';
-import {sleep} from 'time';
 import {base58_decode} from 'pytezos/encoding';
 import {RpcQuery} from 'pytezos/rpc/query';
 import {get_attr_docstring} from 'pytezos/tools/docstring';
@@ -85,7 +84,7 @@ class ShellQuery extends RpcQuery {
     get mempool() {
         return this.chains.main.mempool;
     }
-    wait_next_block(block_hash = null) {
+    async wait_next_block(block_hash = null) {
         var block_time, current_block_hash, delay_sec, elapsed_sec, header, prev_block_dt;
         block_time = Number.parseInt(this.block.context.constants()["time_between_blocks"][0]);
         header = this.head.header();
@@ -96,11 +95,11 @@ class ShellQuery extends RpcQuery {
         elapsed_sec = (Date.now() - prev_block_dt);
         delay_sec = ((elapsed_sec > block_time) ? 0 : (block_time - elapsed_sec));
         console.log(`Wait ${delay_sec} seconds until block ${block_hash} is finalized`);
-        sleep(delay_sec);
+        await new Promise(resolve => setTimeout(resolve, delay_sec * 1000));
         for (var i = 0, _pj_a = block_time; (i < _pj_a); i += 1) {
             current_block_hash = this.head.hash();
             if ((current_block_hash === block_hash)) {
-                sleep(1);
+                await new Promise(resolve => setTimeout(resolve, 1000));
             } else {
                 return current_block_hash;
             }
