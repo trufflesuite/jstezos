@@ -1,8 +1,8 @@
-import {*} from 'pytezos/rpc/shell';
-import {*} from 'pytezos/rpc/protocol';
-import {*} from 'pytezos/rpc/helpers';
-import {*} from 'pytezos/rpc/search';
-import {RpcMultiNode, RpcNode} from 'pytezos/rpc/node';
+import * as Shell from './shell';
+import * as Protocol from './protocol';
+import * as Helpers from './helpers';
+import * as Search from './search';
+import {RpcMultiNode, RpcNode} from './node';
 var _pj;
 var babylonnet, carthagenet, localhost, mainnet, pool, tzkt, zeronet;
 function _pj_snippets(container) {
