@@ -1,6 +1,6 @@
 import lru_cache from 'lru-cache';
-import {Contract, ContractParameter, ContractStorage} from 'pytezos/michelson/contract';
-import {michelson_to_micheline} from 'pytezos/michelson/micheline';
+import {Contract, ContractParameter, ContractStorage} from '../michelson/contract';
+import {michelson_to_micheline} from '../michelson/micheline';
 var _pj;
 var parameter_tz, storage_tz;
 
