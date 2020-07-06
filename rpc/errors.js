@@ -1,4 +1,4 @@
-import {RpcError} from 'pytezos/rpc/node';
+import {RpcError} from './node';
 
 class MichelsonBadContractParameter extends RpcError {
     /*
