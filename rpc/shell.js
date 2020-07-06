@@ -1,4 +1,3 @@
-import * as json from 'simplejson';
 import {lru_cache} from 'functools';
 import {hexlify} from 'binascii';
 import {datetime} from 'datetime';
@@ -257,7 +256,7 @@ class ResponseGenerator {
     * __iter__() {
         for (var line, _pj_c = 0, _pj_a = this._lines, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
             line = _pj_a[_pj_c];
-            yield json.loads(line.decode());
+            yield JSON.parse(line.decode());
         }
     }
 }
