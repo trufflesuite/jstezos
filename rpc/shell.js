@@ -1,4 +1,3 @@
-import * as requests from 'requests';
 import * as json from 'simplejson';
 import {lru_cache} from 'functools';
 import {hexlify} from 'binascii';
