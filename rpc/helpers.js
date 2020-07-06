@@ -1,4 +1,4 @@
-import {RpcQuery} from 'pytezos/rpc/query';
+import {RpcQuery} from './query';
 
 class BakingRightsQuery extends RpcQuery {
     __call__(level = null, cycle = null, delegate = null, max_priority = null, _all = null) {

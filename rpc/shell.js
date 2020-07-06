@@ -1,13 +1,9 @@
-import * as requests from 'requests';
-import * as json from 'simplejson';
-import {lru_cache} from 'functools';
+import lru_cache from 'lru-cache';
 import {hexlify} from 'binascii';
-import {datetime} from 'datetime';
-import {sleep} from 'time';
-import {base58_decode} from 'pytezos/encoding';
-import {RpcQuery} from 'pytezos/rpc/query';
-import {get_attr_docstring} from 'pytezos/tools/docstring';
-import {CyclesQuery, VotingPeriodsQuery} from 'pytezos/rpc/search';
+import {base58_decode} from '../encoding';
+import {RpcQuery} from './query';
+import {get_attr_docstring} from '../tools/docstring';
+import {CyclesQuery, VotingPeriodsQuery} from './search';
 var _pj;
 
 function _pj_snippets(container) {
@@ -88,22 +84,22 @@ class ShellQuery extends RpcQuery {
     get mempool() {
         return this.chains.main.mempool;
     }
-    wait_next_block(block_hash = null) {
+    async wait_next_block(block_hash = null) {
         var block_time, current_block_hash, delay_sec, elapsed_sec, header, prev_block_dt;
         block_time = Number.parseInt(this.block.context.constants()["time_between_blocks"][0]);
         header = this.head.header();
         if ((block_hash === null)) {
             block_hash = header["hash"];
         }
-        prev_block_dt = datetime.strptime(header["timestamp"], "%Y-%m-%dT%H:%M:%SZ");
-        elapsed_sec = (datetime.utcnow() - prev_block_dt).seconds;
+        prev_block_dt = new Date(); // TODO - CONVERT this ---> datetime.strptime(header["timestamp"], "%Y-%m-%dT%H:%M:%SZ");
+        elapsed_sec = (Date.now() - prev_block_dt);
         delay_sec = ((elapsed_sec > block_time) ? 0 : (block_time - elapsed_sec));
         console.log(`Wait ${delay_sec} seconds until block ${block_hash} is finalized`);
-        sleep(delay_sec);
+        await new Promise(resolve => setTimeout(resolve, delay_sec * 1000));
         for (var i = 0, _pj_a = block_time; (i < _pj_a); i += 1) {
             current_block_hash = this.head.hash();
             if ((current_block_hash === block_hash)) {
-                sleep(1);
+                await new Promise(resolve => setTimeout(resolve, 1000));
             } else {
                 return current_block_hash;
             }
@@ -111,7 +107,7 @@ class ShellQuery extends RpcQuery {
         _pj._assert(false, null);
     }
 }
-_pj.set_decorators(ShellQuery, {"block": [property, lru_cache({"maxsize": null})]});
+_pj.set_decorators(ShellQuery, {"block": [property, new lru_cache()]});
 class ChainQuery extends RpcQuery {
     watermark() {
         /*
@@ -258,7 +254,7 @@ class ResponseGenerator {
     * __iter__() {
         for (var line, _pj_c = 0, _pj_a = this._lines, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
             line = _pj_a[_pj_c];
-            yield json.loads(line.decode());
+            yield JSON.parse(line.decode());
         }
     }
 }
