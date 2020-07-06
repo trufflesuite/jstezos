@@ -1,4 +1,4 @@
-import {lru_cache} from 'functools';
+import lru_cache from 'lru-cache';
 import {Contract, ContractParameter, ContractStorage} from 'pytezos/michelson/contract';
 import {michelson_to_micheline} from 'pytezos/michelson/micheline';
 var _pj;
@@ -40,7 +40,7 @@ class NonFungibleTokenImpl extends Contract {
         return new ContractStorage(michelson_to_micheline(storage_tz));
     }
 }
-_pj.set_decorators(NonFungibleTokenImpl, {"parameter": [property, lru_cache({"maxsize": null})], "storage": [property, lru_cache({"maxsize": null})]});
+_pj.set_decorators(NonFungibleTokenImpl, {"parameter": [property, new lru_cache()], "storage": [property, new lru_cache()]});
 export {NonFungibleTokenImpl};
 
 //# sourceMappingURL=non_fungible_token.js.map
