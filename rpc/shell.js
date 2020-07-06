@@ -1,9 +1,9 @@
 import lru_cache from 'lru-cache';
 import {hexlify} from 'binascii';
-import {base58_decode} from 'pytezos/encoding';
-import {RpcQuery} from 'pytezos/rpc/query';
-import {get_attr_docstring} from 'pytezos/tools/docstring';
-import {CyclesQuery, VotingPeriodsQuery} from 'pytezos/rpc/search';
+import {base58_decode} from '../encoding';
+import {RpcQuery} from './query';
+import {get_attr_docstring} from '../tools/docstring';
+import {CyclesQuery, VotingPeriodsQuery} from './search';
 var _pj;
 
 function _pj_snippets(container) {
