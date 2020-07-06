@@ -2,14 +2,6 @@ import {forge_address, forge_array, forge_base58, forge_bool, forge_nat, forge_p
 import {forge_entrypoint, forge_micheline, forge_script} from 'pytezos/michelson/forge';
 var operation_tags;
 
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
-
 operation_tags = {"endorsement": 0, "proposal": 5, "ballot": 6, "seed_nonce_revelation": 1, "double_endorsement_evidence": 2, "double_baking_evidence": 3, "activate_account": 4, "reveal": 107, "transaction": 108, "origination": 109, "delegation": 110};
 function forge_operation(content) {
     /*Forge operation content (locally).

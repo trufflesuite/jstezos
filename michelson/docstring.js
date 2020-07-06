@@ -3,14 +3,6 @@ import {Schema, is_optional} from 'pytezos/michelson/micheline';
 var _pj;
 var core_types, domain_types;
 
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
-
 function _pj_snippets(container) {
     function _assert(comp, msg) {
         function PJAssertionError(message) {
@@ -46,14 +38,6 @@ function _pj_snippets(container) {
 }
 _pj = {};
 _pj_snippets(_pj);
-
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
 
 core_types = ["string", "int", "bool"];
 domain_types = {"nat": "int  /* Natural number */", "unit": "Unit || None /* Void */", "bytes": "string  /* Hex string */ ||\n\tbytes  /* Python byte string */", "timestamp": "int  /* Unix time in seconds */ ||\n\tstring  /* Formatted datetime `%Y-%m-%dT%H:%M:%SZ` */", "mutez": "int  /* Amount in `utz` (10^-6) */ ||\n\tDecimal  /* Amount in `tz` */", "contract": "string  /* Base58 encoded `KT` address */", "address": "string  /* Base58 encoded `tz` or `KT` address */", "key": "string  /* Base58 encoded public key */", "key_hash": "string  /* Base58 encoded public key hash */", "signature": "string  /* Base58 encoded signature */", "lambda": "string  /* Michelson source code */"};

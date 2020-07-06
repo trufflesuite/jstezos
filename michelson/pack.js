@@ -4,14 +4,6 @@ import {forge_micheline, unforge_micheline} from 'pytezos/michelson/forge';
 import {parse_prim_expr} from 'pytezos/repl/parser';
 var _pj;
 
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
-
 function _pj_snippets(container) {
     function _assert(comp, msg) {
         function PJAssertionError(message) {
@@ -47,14 +39,6 @@ function _pj_snippets(container) {
 }
 _pj = {};
 _pj_snippets(_pj);
-
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
 
 function prepack_micheline(val_expr, type_expr) {
     function try_pack(val_node, type_node) {

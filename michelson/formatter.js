@@ -1,16 +1,7 @@
 import * as json from 'json';
 import {datetime} from 'datetime';
-import {pprint} from 'pprint';
 var _pj;
 var line_size;
-
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
 
 function _pj_snippets(container) {
     function _assert(comp, msg) {
@@ -47,14 +38,6 @@ function _pj_snippets(container) {
 }
 _pj = {};
 _pj_snippets(_pj);
-
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
 
 line_size = 100;
 function format_timestamp(timestamp) {
@@ -197,7 +180,7 @@ function micheline_to_michelson(data, inline = false, wrap = false) {
         }
     } catch(e) {
         if (((e instanceof KeyError) || (e instanceof IndexError) || (e instanceof TypeError))) {
-            pprint(data, {"compact": true});
+            console.log(JSON.stringify(data));
             throw new MichelsonFormatterError(e.args);
         } else {
             throw e;

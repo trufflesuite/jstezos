@@ -1,6 +1,5 @@
 import * as yaml from 'yaml';
 import {deepcopy} from 'copy';
-import {pformat} from 'pprint';
 import {MichelsonParser, MichelsonParserError} from 'pytezos/michelson/grammar';
 import {micheline_to_michelson, michelson_to_micheline} from 'pytezos/michelson/converter';
 import {MichelsonRuntimeError, do_interpret} from 'pytezos/repl/control';
@@ -9,14 +8,6 @@ import {*} from 'pytezos/repl/arithmetic';
 import {*} from 'pytezos/repl/structures';
 import {*} from 'pytezos/repl/blockchain';
 var _pj;
-
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
 
 function _pj_snippets(container) {
     function _assert(comp, msg) {
@@ -53,14 +44,6 @@ function _pj_snippets(container) {
 }
 _pj = {};
 _pj_snippets(_pj);
-
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
 
 function get_content(obj) {
     var content;
@@ -228,7 +211,7 @@ function format_stderr(error) {
         if ((error instanceof MichelsonParserError)) {
             [evalue, traceback] = [error.message, `at line ${error.line}, pos ${error.pos}`];
         } else {
-            [evalue, traceback] = [pformat(error.args, {"compact": true}), ""];
+            [evalue, traceback] = [JSON.stringify(error.args), ""];
         }
     }
     return {"name": ename, "value": evalue, "trace": traceback};

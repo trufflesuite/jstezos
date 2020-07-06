@@ -4,14 +4,6 @@ import * as types from 'types';
 import {update_wrapper} from 'functools';
 var __interactive_mode__;
 
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
-
 function is_interactive() {
     import * as main from '@main__';
     return (! ("__file__" in main));

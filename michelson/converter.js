@@ -1,4 +1,3 @@
-import {pprint} from 'pprint';
 import {namedtuple} from 'collections';
 import {prim_tags} from 'pytezos/michelson/forge';
 import {Schema, build_maps, collapse_micheline, make_micheline, michelson_to_micheline, parse_json, parse_micheline} from 'pytezos/michelson/micheline';
@@ -6,14 +5,6 @@ import {micheline_to_michelson} from 'pytezos/michelson/formatter';
 import {generate_docstring} from 'pytezos/michelson/docstring';
 var _pj;
 var BigMapSchema;
-
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
 
 function _pj_snippets(container) {
     function _assert(comp, msg) {
@@ -51,14 +42,6 @@ function _pj_snippets(container) {
 _pj = {};
 _pj_snippets(_pj);
 
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
-
 BigMapSchema = namedtuple("BigMapSchema", ["bin_to_id", "id_to_bin"]);
 class MichelineSchemaError extends ValueError {
 }
@@ -78,7 +61,7 @@ function build_schema(code) {
         return new Schema(metadata, ...build_maps(metadata));
     } catch(e) {
         if (((e instanceof KeyError) || (e instanceof ValueError) || (e instanceof TypeError))) {
-            pprint(code, {"compact": true});
+            console.log(JSON.stringify(code));
             throw new MichelineSchemaError(`Failed to build schema`, e.args);
         } else {
             throw e;
@@ -99,7 +82,7 @@ function decode_micheline(val_expr, type_expr, schema, root = "0") {
     } catch(e) {
         if (((e instanceof KeyError) || (e instanceof IndexError) || (e instanceof TypeError))) {
             console.log(generate_docstring(schema, "schema"));
-            pprint(val_expr, {"compact": true});
+            console.log(JSON.stringify(val_expr));
             throw new MichelineSchemaError(`Failed to decode micheline expression`, e.args);
         } else {
             throw e;
@@ -125,7 +108,7 @@ function encode_micheline(data, schema, root = "0", binary = false) {
         __whatever__ = true;
         if (((e instanceof KeyError) || (e instanceof IndexError) || (e instanceof TypeError))) {
             console.log(generate_docstring(schema, "schema"));
-            pprint(data, {"compact": true});
+            console.log(JSON.stringify(data));
             throw new MichelineSchemaError(`Failed to encode micheline expression`, e.args);
         } else {
             throw e;

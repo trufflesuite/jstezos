@@ -1,22 +1,13 @@
-import {lru_cache} from 'functools';
-import {datetime} from 'datetime';
-import {Decimal} from 'decimal';
-import {OperationGroup} from 'pytezos/operation/group';
-import {ContentMixin} from 'pytezos/operation/content';
-import {ContractInterface} from 'pytezos/michelson/interface';
-import {Contract} from 'pytezos/michelson/contract';
-import {Interop} from 'pytezos/interop';
-import {get_class_docstring} from 'pytezos/tools/docstring';
-import {NonFungibleTokenImpl} from 'pytezos/standards/non_fungible_token';
+import lru_cache from 'lru-cache';
+import {Decimal} from 'decimal.js';
+import {OperationGroup} from './operation/group';
+import {ContentMixin} from './operation/content';
+import {ContractInterface} from './michelson/interface';
+import {Contract} from './michelson/contract';
+import {Interop} from './interop';
+import {get_class_docstring} from './tools/docstring';
+import {NonFungibleTokenImpl} from './standards/non_fungible_token';
 var _pj;
-
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
 
 function _pj_snippets(container) {
     function set_decorators(cls, props) {
@@ -102,9 +93,9 @@ class PyTezosClient extends Interop {
         var constants, dt, first_delay, ts;
         constants = this.shell.block.context.constants();
         ts = this.shell.head.header()["timestamp"];
-        dt = datetime.strptime(ts, "%Y-%m-%dT%H:%M:%SZ");
+        dt = new Date(); // TODO - CONVERT this ---> datetime.strptime(ts, "%Y-%m-%dT%H:%M:%SZ");
         first_delay = constants["time_between_blocks"][0];
-        return (Number.parseInt((dt - datetime(1970, 1, 1)).total_seconds()) + Number.parseInt(first_delay));
+        return (Number.parseInt((dt - new Date(1970, 1, 1)).total_seconds()) + Number.parseInt(first_delay));
     }
     _get_contract_interface(contract_id, factory = Contract) {
         return new ContractInterface({"address": contract_id, "shell": this.shell, "key": this.key, "factory": factory});
@@ -127,7 +118,7 @@ class PyTezosClient extends Interop {
         return this._get_contract_interface(contract_id, {"factory": NonFungibleTokenImpl});
     }
 }
-_pj.set_decorators(PyTezosClient, {"_get_contract_interface": [lru_cache({"maxsize": null})]});
+_pj.set_decorators(PyTezosClient, {"_get_contract_interface": [new lru_cache()]});
 applyMixins(PyTezosClient, [ContentMixin])
 export {PyTezosClient};
 

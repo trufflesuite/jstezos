@@ -1,17 +1,10 @@
-import {exists, expanduser} from 'os/path';
-import {RpcNode, ShellQuery, babylonnet, carthagenet, localhost, mainnet, pool, zeronet} from 'pytezos/rpc';
-import {Key, is_installed} from 'pytezos/crypto';
-import {is_key, is_pkh} from 'pytezos/encoding';
+import {existsSync} from 'fs';
+import {homedir} from 'os';
+import {RpcNode, ShellQuery, babylonnet, carthagenet, localhost, mainnet, pool, zeronet} from './rpc/__init__';
+import {Key, is_installed} from './crypto';
+import {is_key, is_pkh} from './encoding';
 var _pj;
 var default_key, default_key_hash, default_shell;
-
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
 
 function _pj_snippets(container) {
     function in_es6(left, right) {
@@ -30,14 +23,6 @@ function _pj_snippets(container) {
 }
 _pj = {};
 _pj_snippets(_pj);
-
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
 
 default_shell = "carthagenet";
 default_key = "edsk33N474hxzA4sKeWVM6iuGNGDpX2mGwHNxEA4UbWS8sW3Ta3NKH";
@@ -105,7 +90,7 @@ class Interop {
                 if (is_pkh(key)) {
                     this.key = new KeyHash(key);
                 } else {
-                    if (exists(expanduser(key))) {
+                    if (existsSync(homedir(key))) {
                         this.key = Key.from_faucet(key);
                     } else {
                         this.key = Key.from_alias(key);

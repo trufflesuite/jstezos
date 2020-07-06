@@ -8,17 +8,19 @@ Just type:
 >>> pytezos
 
 And follow the interactive documentation.*/
-import {RpcProvider, babylonnet, localhost, mainnet, zeronet} from 'pytezos/rpc';
-import {*} from 'pytezos/rpc/errors';
-import {Key} from 'pytezos/crypto';
-import {Proto} from 'pytezos/proto';
-import {Contract} from 'pytezos/michelson/contract';
-import {format_timestamp} from 'pytezos/michelson/formatter';
-import {PyTezosClient} from 'pytezos/client';
-import {OperationGroup} from 'pytezos/operation/group';
-import {ContractInterface} from 'pytezos/michelson/interface';
-import {NonFungibleTokenImpl} from 'pytezos/standards/non_fungible_token';
+import {RpcProvider, babylonnet, localhost, mainnet, zeronet} from './rpc/__init__';
+import * as Errors from './rpc/errors';
+import {Key} from './crypto';
+import {Proto} from './proto';
+import {Contract} from './michelson/contract';
+import {format_timestamp} from './michelson/formatter';
+import {PyTezosClient} from './client';
+import {OperationGroup} from './operation/group';
+import {ContractInterface} from './michelson/interface';
+import {NonFungibleTokenImpl} from './standards/non_fungible_token';
 var pytezos;
 pytezos = new PyTezosClient();
+
+export { Contract, Errors, pytezos }
 
 //# sourceMappingURL=__init__.js.map

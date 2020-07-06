@@ -1,11 +1,10 @@
 import {glob} from 'glob';
-import {abspath, dirname, join} from 'os/path';
-import {pprint} from 'pprint';
-import * as fire from 'fire';
-import {Contract, RpcError, pytezos} from 'pytezos';
-import {generate_docstring} from 'pytezos/michelson/docstring';
-import {OperationResult} from 'pytezos/operation/result';
-import {create_deployment, create_deployment_status} from 'pytezos/tools/github';
+import {resolve, dirname, join} from 'path';
+import fire from 'js-fire';
+import {Contract, Errors, pytezos} from './__init__';
+import {generate_docstring} from './michelson/docstring';
+import {OperationResult} from './operation/result';
+import {create_deployment, create_deployment_status} from './tools/github';
 var _pj;
 var kernel_js_path, kernel_json;
 function _pj_snippets(container) {
@@ -43,7 +42,7 @@ function get_contract(path) {
     if ((path === null)) {
         files = glob("*.tz");
         _pj._assert((files.length === 1), null);
-        contract = Contract.from_file(abspath(files[0]));
+        contract = Contract.from_file(resolve(files[0]));
     } else {
         if (any(map((x) => {
     return path.startswith(x);
@@ -70,7 +69,7 @@ class PyTezosCli {
             console.log(generate_docstring(contract.storage.schema, {"title": "storage"}));
         } else {
             if ((action === "default")) {
-                pprint(contract.storage["default"]());
+                console.log(JSON.stringify(contract.storage["default"]()));
             } else {
                 _pj._assert(false, action);
             }
@@ -102,12 +101,12 @@ class PyTezosCli {
             try {
                 opg = ptz.activate_account().autofill().sign();
                 console.log(`Injecting activation operation:`);
-                pprint(opg.json_payload());
+                console.log(JSON.stringify(opg.json_payload()));
                 opg.inject({"_async": false});
                 console.log(`Activation succeeded! Claimed balance: ${ptz.balance()} ꜩ`);
             } catch(e) {
-                if ((e instanceof RpcError)) {
-                    pprint(e);
+                if ((e instanceof Errors.RpcError)) {
+                    console.log(JSON.stringify(e));
                     exit((- 1));
                 } else {
                     throw e;
@@ -119,12 +118,12 @@ class PyTezosCli {
         try {
             opg = ptz.reveal().autofill().sign();
             console.log(`Injecting reveal operation:`);
-            pprint(opg.json_payload());
+            console.log(JSON.stringify(opg.json_payload()));
             opg.inject({"_async": false});
             console.log(`Your key ${ptz.key.public_key_hash()} is now active and revealed`);
         } catch(e) {
-            if ((e instanceof RpcError)) {
-                pprint(e);
+            if ((e instanceof Errors.RpcError)) {
+                console.log(JSON.stringify(e));
                 exit((- 1));
             } else {
                 throw e;
@@ -152,9 +151,9 @@ class PyTezosCli {
         try {
             opg = ptz.origination({"script": contract.script({"storage": storage})}).autofill().sign();
             console.log(`Injecting origination operation:`);
-            pprint(opg.json_payload());
+            console.log(JSON.stringify(opg.json_payload()));
             if (dry_run) {
-                pprint(opg.preapply());
+                console.log(JSON.stringify(opg.preapply()));
                 exit(0);
             } else {
                 opg = opg.inject({"_async": false});
@@ -165,13 +164,13 @@ class PyTezosCli {
             console.log(`Contract was successfully deployed: ${bcd_link}`);
             if (github_repo_slug) {
                 deployment = create_deployment(github_repo_slug, github_oauth_token, {"environment": network});
-                pprint(deployment);
+                console.log(JSON.stringify(deployment));
                 status = create_deployment_status(github_repo_slug, github_oauth_token, {"deployment_id": deployment["id"], "state": "success", "environment": network, "environment_url": bcd_link});
-                pprint(status);
+                console.log(JSON.stringify(status));
             }
         } catch(e) {
-            if ((e instanceof RpcError)) {
-                pprint(e);
+            if ((e instanceof Errors.RpcError)) {
+                console.log(JSON.stringify(e));
                 exit((- 1));
             } else {
                 throw e;
@@ -180,7 +179,7 @@ class PyTezosCli {
     }
 }
 function main() {
-    return new fire.Fire(PyTezosCli);
+    return new fire(PyTezosCli);
 }
 if ((__name__ === "__main__")) {
     main();
