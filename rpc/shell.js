@@ -1,6 +1,5 @@
 import lru_cache from 'lru-cache';
 import {hexlify} from 'binascii';
-import {datetime} from 'datetime';
 import {sleep} from 'time';
 import {base58_decode} from 'pytezos/encoding';
 import {RpcQuery} from 'pytezos/rpc/query';
@@ -93,8 +92,8 @@ class ShellQuery extends RpcQuery {
         if ((block_hash === null)) {
             block_hash = header["hash"];
         }
-        prev_block_dt = datetime.strptime(header["timestamp"], "%Y-%m-%dT%H:%M:%SZ");
-        elapsed_sec = (datetime.utcnow() - prev_block_dt).seconds;
+        prev_block_dt = new Date(); // TODO - CONVERT this ---> datetime.strptime(header["timestamp"], "%Y-%m-%dT%H:%M:%SZ");
+        elapsed_sec = (Date.now() - prev_block_dt);
         delay_sec = ((elapsed_sec > block_time) ? 0 : (block_time - elapsed_sec));
         console.log(`Wait ${delay_sec} seconds until block ${block_hash} is finalized`);
         sleep(delay_sec);
