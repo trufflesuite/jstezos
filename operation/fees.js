@@ -1,4 +1,4 @@
-import {forge_operation} from 'pytezos/operation/forge';
+import {forge_operation} from './forge';
 var hard_gas_limit_per_operation, hard_storage_limit_per_operation, minimal_fees, minimal_nanotez_per_byte, minimal_nanotez_per_gas_unit;
 
 hard_gas_limit_per_operation = 1040000;
