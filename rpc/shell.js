@@ -1,4 +1,4 @@
-import {lru_cache} from 'functools';
+import lru_cache from 'lru-cache';
 import {hexlify} from 'binascii';
 import {datetime} from 'datetime';
 import {sleep} from 'time';
@@ -109,7 +109,7 @@ class ShellQuery extends RpcQuery {
         _pj._assert(false, null);
     }
 }
-_pj.set_decorators(ShellQuery, {"block": [property, lru_cache({"maxsize": null})]});
+_pj.set_decorators(ShellQuery, {"block": [property, new lru_cache()]});
 class ChainQuery extends RpcQuery {
     watermark() {
         /*
