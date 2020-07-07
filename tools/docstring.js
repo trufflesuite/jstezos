@@ -1,4 +1,3 @@
-import * as re from 're';
 import * as inspect from 'inspect';
 var __interactive_mode__;
 
@@ -14,7 +13,7 @@ function get_attr_docstring(class_type, attr_name) {
     }
     attr = (class_type[attr_name] || null);
     if ((attr && attr.__doc__)) {
-        return re.sub(" {3,}", "", attr.__doc__);
+        return attr.__doc__.replace(" {3,}", "");
     }
 }
 function default_attr_filter(x) {
