@@ -9,14 +9,6 @@ import {RpcQuery} from 'pytezos/rpc/query';
 import {is_bh, is_ogh} from 'pytezos/encoding';
 var _pj;
 
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
-
 function _pj_snippets(container) {
     function in_es6(left, right) {
         if (((right instanceof Array) || ((typeof right) === "string"))) {
@@ -34,14 +26,6 @@ function _pj_snippets(container) {
 }
 _pj = {};
 _pj_snippets(_pj);
-
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
 
 function to_timestamp(v) {
     try {

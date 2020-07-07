@@ -5,14 +5,6 @@ import * as json from 'json';
 import {expand_macro} from 'pytezos/michelson/macros';
 var _pj;
 
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
-
 function _pj_snippets(container) {
     function set_properties(cls, props) {
         var desc, value;
@@ -34,14 +26,6 @@ function _pj_snippets(container) {
 }
 _pj = {};
 _pj_snippets(_pj);
-
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
 
 class MichelsonParserError extends ValueError {
     constructor(token, message = null) {

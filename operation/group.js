@@ -11,14 +11,6 @@ import {get_class_docstring} from 'pytezos/tools/docstring';
 var _pj;
 var validation_passes;
 
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
-
 function _pj_snippets(container) {
     function in_es6(left, right) {
         if (((right instanceof Array) || ((typeof right) === "string"))) {
