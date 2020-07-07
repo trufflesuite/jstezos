@@ -1,8 +1,7 @@
 var __interactive_mode__;
 
 function is_interactive() {
-    import * as main from '@main__';
-    return (! ("__file__" in main));
+    return !module.parent;
 }
 __interactive_mode__ = is_interactive();
 function get_attr_docstring(class_type, attr_name) {
