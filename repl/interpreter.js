@@ -1,5 +1,6 @@
 import * as yaml from 'yaml';
-import {deepcopy} from 'copy';
+import clone from 'rfdc';
+const deepcopy = clone();
 import {MichelsonParser, MichelsonParserError} from '../michelson/grammar';
 import {micheline_to_michelson, michelson_to_micheline} from '../michelson/converter';
 import {MichelsonRuntimeError, do_interpret} from './control';
