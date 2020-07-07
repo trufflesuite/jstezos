@@ -1,12 +1,13 @@
-import * as yaml from 'yaml';
-import {deepcopy} from 'copy';
-import {MichelsonParser, MichelsonParserError} from 'pytezos/michelson/grammar';
-import {micheline_to_michelson, michelson_to_micheline} from 'pytezos/michelson/converter';
-import {MichelsonRuntimeError, do_interpret} from 'pytezos/repl/control';
-import {*} from 'pytezos/repl/helpers';
-import {*} from 'pytezos/repl/arithmetic';
-import {*} from 'pytezos/repl/structures';
-import {*} from 'pytezos/repl/blockchain';
+import yaml from 'js-yaml';
+import clone from 'rfdc';
+const deepcopy = clone();
+import {MichelsonParser, MichelsonParserError} from '../michelson/grammar';
+import {micheline_to_michelson, michelson_to_micheline} from '../michelson/converter';
+import {MichelsonRuntimeError, do_interpret} from './control';
+import * as Helpers from './helpers';
+import * as Arithmetic from './arithmetic';
+import * as Structures from './structures';
+import * as Blockchain from './blockchain';
 var _pj;
 
 function _pj_snippets(container) {
