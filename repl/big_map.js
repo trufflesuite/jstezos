@@ -1,7 +1,7 @@
-import {Interop} from 'pytezos/interop';
-import {BigMap, Map, StackItem} from 'pytezos/repl/types';
-import {assert_big_map_val, assert_comparable, assert_expr_equal, get_int, parse_expression} from 'pytezos/repl/parser';
-import {get_key_hash} from 'pytezos/michelson/pack';
+import {Interop} from '../interop';
+import {BigMap, Map, StackItem} from './types';
+import {assert_big_map_val, assert_comparable, assert_expr_equal, get_int, parse_expression} from './parser';
+import {get_key_hash} from '../michelson/pack';
 var _pj;
 
 function _pj_snippets(container) {
