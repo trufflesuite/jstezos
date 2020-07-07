@@ -1,4 +1,5 @@
-import {logger} from 'loguru';
+import debugModule from 'debug';
+const debug = debugModule("tools:otp");
 import {is_pkh} from 'pytezos/encoding';
 import {Key} from 'pytezos/crypto';
 import {mainnet} from 'pytezos/rpc';
@@ -25,7 +26,7 @@ export default class OTP {
             throw new Error("Cannot generate OTP without a secret key");
         }
         message = this._shell.head.calculate_hash();
-        logger.debug(`block hash: ${message}`);
+        debug(`block hash: ${message}`);
         return this._key.sign(message);
     }
     verify(signature) {
@@ -35,12 +36,12 @@ export default class OTP {
             row = _pj_a[_pj_c];
             try {
                 message = row[0];
-                logger.debug(`try ${message}`);
+                debug(`try ${message}`);
                 this._key.verify(signature, message);
                 return true;
             } catch(e) {
                 if ((e instanceof TypeError)) {
-                    logger.debug(e.toString());
+                    debug(e.toString());
                 } else {
                     throw e;
                 }
