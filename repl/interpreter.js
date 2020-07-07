@@ -1,4 +1,4 @@
-import * as yaml from 'yaml';
+import yaml from 'js-yaml';
 import clone from 'rfdc';
 const deepcopy = clone();
 import {MichelsonParser, MichelsonParserError} from '../michelson/grammar';

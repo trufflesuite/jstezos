@@ -21,6 +21,7 @@
     "binascii": "0.0.2",
     "decimal.js": "^10.2.0",
     "js-fire": "^0.7.3",
+    "js-yaml": "^3.14.0",
     "lru-cache": "^5.1.1",
     "rfdc": "^1.1.4"
   },
