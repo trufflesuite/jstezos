@@ -1,8 +1,8 @@
 import debugModule from 'debug';
 const debug = debugModule("tools:otp");
-import {is_pkh} from 'pytezos/encoding';
-import {Key} from 'pytezos/crypto';
-import {mainnet} from 'pytezos/rpc';
+import {is_pkh} from '../encoding';
+import {Key} from '../crypto';
+import {mainnet} from '../rpc/__init__';
 export default class OTP {
     constructor(key, interval = 5, shell = mainnet) {
         /*
