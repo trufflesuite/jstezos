@@ -27,7 +27,7 @@ function _pj_snippets(container) {
 _pj = {};
 _pj_snippets(_pj);
 
-class MichelsonParserError extends ValueError {
+class MichelsonParserError extends TypeError {
     constructor(token, message = null) {
         message = (message || `failed to parse expression ${token}`);
         super(MichelsonParserError, self).__init__(message);
