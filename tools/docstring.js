@@ -1,12 +1,7 @@
-import * as re from 're';
-import * as inspect from 'inspect';
-import * as types from 'types';
-import {update_wrapper} from 'functools';
 var __interactive_mode__;
 
 function is_interactive() {
-    import * as main from '@main__';
-    return (! ("__file__" in main));
+    return !module.parent;
 }
 __interactive_mode__ = is_interactive();
 function get_attr_docstring(class_type, attr_name) {
@@ -16,7 +11,7 @@ function get_attr_docstring(class_type, attr_name) {
     }
     attr = (class_type[attr_name] || null);
     if ((attr && attr.__doc__)) {
-        return re.sub(" {3,}", "", attr.__doc__);
+        return attr.__doc__.replace(" {3,}", "");
     }
 }
 function default_attr_filter(x) {
@@ -30,7 +25,7 @@ function get_class_docstring(class_type, attr_filter = default_attr_filter, exte
             name = `.${x}`;
         } else {
             if (extended) {
-                sig = inspect.signature(attr).toString().replace("self, ", "");
+                sig = attr.toString().replace("self, ", "");
             } else {
                 sig = "()";
             }
