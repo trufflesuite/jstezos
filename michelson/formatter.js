@@ -44,7 +44,7 @@ function format_timestamp(timestamp) {
     dt = datetime.utcfromtimestamp(timestamp);
     return dt.strftime("%Y-%m-%dT%H:%M:%SZ");
 }
-class MichelsonFormatterError extends ValueError {
+class MichelsonFormatterError extends TypeError {
 }
 function is_framed(node) {
     if (node['prim'] in {'Pair', 'Left', 'Right', 'Some',

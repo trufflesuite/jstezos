@@ -8,7 +8,7 @@ function format_mutez(value) {
             value = Number.parseInt((value * Math.pow(10, 6)));
         } else {
             if ((((typeof value) === "number") || (value instanceof Number))) {
-                throw new ValueError("Please use decimal instead of float");
+                throw new Error("Please use decimal instead of float");
             }
         }
     }

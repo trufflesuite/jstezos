@@ -43,7 +43,7 @@ _pj = {};
 _pj_snippets(_pj);
 
 BigMapSchema = namedtuple("BigMapSchema", ["bin_to_id", "id_to_bin"]);
-class MichelineSchemaError extends ValueError {
+class MichelineSchemaError extends TypeError {
 }
 function build_schema(code) {
     /*
@@ -60,7 +60,7 @@ function build_schema(code) {
         metadata = collapse_micheline(code);
         return new Schema(metadata, ...build_maps(metadata));
     } catch(e) {
-        if (((e instanceof KeyError) || (e instanceof ValueError) || (e instanceof TypeError))) {
+        if (((e instanceof KeyError) || (e instanceof TypeError))) {
             console.log(JSON.stringify(code));
             throw new MichelineSchemaError(`Failed to build schema`, e.args);
         } else {
@@ -132,7 +132,7 @@ function convert(source, schema = null, output = "micheline", inline = false) {
         try {
             source = michelson_to_micheline(source);
         } catch(e) {
-            if ((e instanceof ValueError)) {
+            if ((e instanceof TypeError)) {
                 _pj._assert(schema, null);
                 source = encode_micheline(source, schema);
             } else {
