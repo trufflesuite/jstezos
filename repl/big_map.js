@@ -1,4 +1,3 @@
-import {JSONDecodeError} from 'simplejson';
 import {Interop} from 'pytezos/interop';
 import {BigMap, Map, StackItem} from 'pytezos/repl/types';
 import {assert_big_map_val, assert_comparable, assert_expr_equal, get_int, parse_expression} from 'pytezos/repl/parser';
@@ -256,7 +255,7 @@ class BigMapPool {
         try {
             res = new Interop().using(network).shell.head.context.big_maps[Number.parseInt(big_map)][key_hash]();
         } catch(e) {
-            if ((e instanceof JSONDecodeError)) {
+            if ((e instanceof SyntaxError)) {
                 res = null;
             } else {
                 throw e;
