@@ -1,4 +1,3 @@
-import {Dict} from 'typing';
 import {JSONDecodeError} from 'simplejson';
 import {Interop} from 'pytezos/interop';
 import {BigMap, Map, StackItem} from 'pytezos/repl/types';
