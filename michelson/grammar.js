@@ -2,7 +2,7 @@ import {LexToken, Lexer, lex} from 'ply/lex';
 import {yacc} from 'ply/yacc';
 import * as re from 're';
 import * as json from 'json';
-import {expand_macro} from 'pytezos/michelson/macros';
+import {expand_macro} from './macros';
 var _pj;
 
 function _pj_snippets(container) {
