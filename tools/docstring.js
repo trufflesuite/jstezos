@@ -1,6 +1,5 @@
 import * as re from 're';
 import * as inspect from 'inspect';
-import {update_wrapper} from 'functools';
 var __interactive_mode__;
 
 function is_interactive() {
