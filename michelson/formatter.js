@@ -1,4 +1,3 @@
-import * as json from 'json';
 import {datetime} from 'datetime';
 var _pj;
 var line_size;
@@ -150,7 +149,7 @@ ${arg_indent}${item}`
                         return `0x${value}`;
                     } else {
                         if ((core_type === "string")) {
-                            return json.dumps(value);
+                            return JSON.stringify(value);
                         } else {
                             _pj._assert(false, `unexpected core node ${node}`);
                         }
