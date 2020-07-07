@@ -22,7 +22,7 @@ export default class OTP {
     now() {
         var message;
         if ((! this._key.secret_exponent)) {
-            throw new ValueError("Cannot generate OTP without a secret key");
+            throw new Error("Cannot generate OTP without a secret key");
         }
         message = this._shell.head.calculate_hash();
         logger.debug(`block hash: ${message}`);
@@ -39,7 +39,7 @@ export default class OTP {
                 this._key.verify(signature, message);
                 return true;
             } catch(e) {
-                if ((e instanceof ValueError)) {
+                if ((e instanceof TypeError)) {
                     logger.debug(e.toString());
                 } else {
                     throw e;

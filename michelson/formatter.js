@@ -1,5 +1,3 @@
-import * as json from 'json';
-import {datetime} from 'datetime';
 var _pj;
 var line_size;
 
@@ -42,10 +40,10 @@ _pj_snippets(_pj);
 line_size = 100;
 function format_timestamp(timestamp) {
     var dt;
-    dt = datetime.utcfromtimestamp(timestamp);
-    return dt.strftime("%Y-%m-%dT%H:%M:%SZ");
+    dt = new Date(timestamp);
+    return dt; // TODO - CONVERT this --> dt.strftime("%Y-%m-%dT%H:%M:%SZ");
 }
-class MichelsonFormatterError extends ValueError {
+class MichelsonFormatterError extends TypeError {
 }
 function is_framed(node) {
     if (node['prim'] in {'Pair', 'Left', 'Right', 'Some',
@@ -150,7 +148,7 @@ ${arg_indent}${item}`
                         return `0x${value}`;
                     } else {
                         if ((core_type === "string")) {
-                            return json.dumps(value);
+                            return JSON.stringify(value);
                         } else {
                             _pj._assert(false, `unexpected core node ${node}`);
                         }
