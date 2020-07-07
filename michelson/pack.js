@@ -1,7 +1,7 @@
-import {blake2b_32} from 'pytezos/crypto';
-import {base58_encode, forge_address, forge_base58, forge_contract, forge_public_key, forge_timestamp} from 'pytezos/encoding';
-import {forge_micheline, unforge_micheline} from 'pytezos/michelson/forge';
-import {parse_prim_expr} from 'pytezos/repl/parser';
+import {blake2b_32} from '../crypto';
+import {base58_encode, forge_address, forge_base58, forge_contract, forge_public_key, forge_timestamp} from '../encoding';
+import {forge_micheline, unforge_micheline} from './forge';
+import {parse_prim_expr} from '../repl/parser';
 var _pj;
 
 function _pj_snippets(container) {
