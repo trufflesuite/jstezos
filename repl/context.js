@@ -1,10 +1,10 @@
 import clone from 'rfdc';
 const deepcopy = clone();
-import {blake2b} from 'pytezos/crypto';
-import {base58_encode} from 'pytezos/encoding';
-import {StackItem, assert_stack_item} from 'pytezos/repl/types';
-import {micheline_to_michelson} from 'pytezos/michelson/converter';
-import {BigMapPool} from 'pytezos/repl/big_map';
+import {blake2b} from '../crypto';
+import {base58_encode} from '../encoding';
+import {StackItem, assert_stack_item} from './types';
+import {micheline_to_michelson} from '../michelson/converter';
+import {BigMapPool} from './big_map';
 var _pj;
 
 function _pj_snippets(container) {
