@@ -1,4 +1,3 @@
-import * as inspect from 'inspect';
 var __interactive_mode__;
 
 function is_interactive() {
@@ -27,7 +26,7 @@ function get_class_docstring(class_type, attr_filter = default_attr_filter, exte
             name = `.${x}`;
         } else {
             if (extended) {
-                sig = inspect.signature(attr).toString().replace("self, ", "");
+                sig = attr.toString().replace("self, ", "");
             } else {
                 sig = "()";
             }
