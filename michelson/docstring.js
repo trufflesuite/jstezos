@@ -1,5 +1,5 @@
-import {basename} from 'os/path';
-import {Schema, is_optional} from 'pytezos/michelson/micheline';
+import {basename} from 'path';
+import {Schema, is_optional} from './micheline';
 var _pj;
 var core_types, domain_types;
 
