@@ -1,4 +1,4 @@
-import {namedtuple} from 'collections';
+import namedtuple from '@aureooms/js-collections-namedtuple';
 import {prim_tags} from 'pytezos/michelson/forge';
 import {Schema, build_maps, collapse_micheline, make_micheline, michelson_to_micheline, parse_json, parse_micheline} from 'pytezos/michelson/micheline';
 import {micheline_to_michelson} from 'pytezos/michelson/formatter';
