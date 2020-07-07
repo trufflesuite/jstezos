@@ -1,4 +1,5 @@
-import {deepcopy} from 'copy';
+import clone from 'rfdc';
+const deepcopy = clone();
 import {List} from 'typing';
 import {blake2b} from 'pytezos/crypto';
 import {base58_encode} from 'pytezos/encoding';
