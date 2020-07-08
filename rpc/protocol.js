@@ -2,7 +2,6 @@ import * as pendulum from 'pendulum';
 import {ParserError} from 'pendulum/parsing/exceptions';
 import {datetime} from 'datetime';
 import {count} from 'itertools';
-import {Iterator} from 'typing';
 import {get_attr_docstring} from 'pytezos/tools/docstring';
 import {BlockSliceQuery} from 'pytezos/rpc/search';
 import {RpcQuery} from 'pytezos/rpc/query';
