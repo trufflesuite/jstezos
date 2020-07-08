@@ -1,6 +1,5 @@
 import * as pendulum from 'pendulum';
 import {ParserError} from 'pendulum/parsing/exceptions';
-import {datetime} from 'datetime';
 import {count} from 'itertools';
 import {get_attr_docstring} from '../tools/docstring';
 import {BlockSliceQuery} from './search';
@@ -35,7 +34,7 @@ function to_timestamp(v) {
             throw e;
         }
     }
-    if ((v instanceof datetime)) {
+    if ((v instanceof Date)) {
         v = Number.parseInt(v.timestamp());
     }
     return v;
