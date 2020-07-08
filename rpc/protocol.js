@@ -147,7 +147,7 @@ class ContractQuery extends RpcQuery {
         }
         pk = this._parent[pkh].manager_key().get("key");
         if ((! pk)) {
-            throw new ValueError("Public key is not revealed.");
+            throw new Error("Public key is not revealed.");
         }
         return pk;
     }

@@ -67,7 +67,7 @@ class OperationGroup extends Interop {
         /*Get binary payload used for injection/hash calculation.
         */
         if ((! this.signature)) {
-            throw new ValueError("Not signed");
+            throw new Error("Not signed");
         }
         return (bytes.fromhex(this.forge()) + forge_base58(this.signature));
     }
@@ -141,7 +141,7 @@ class OperationGroup extends Interop {
         if (validate) {
             remote_data = this.shell.blocks[this.branch].helpers.forge.operations.post(payload);
             if ((local_data !== remote_data)) {
-                throw new ValueError(`Local forge result differs from remote one:
+                throw new Error(`Local forge result differs from remote one:
 
 ${local_data}
 
@@ -191,7 +191,7 @@ ${remote_data}`
         if (any(map((x) => {
     return (validation_passes[x["kind"]] !== validation_pass);
 }, this.contents))) {
-            throw new ValueError("Mixed validation passes");
+            throw new Error("Mixed validation passes");
         }
         if ((validation_pass === 0)) {
             chain_watermark = bytes.fromhex(this.shell.chains.main.watermark());
@@ -219,7 +219,7 @@ ${remote_data}`
         :returns: RPC response from `preapply`
         */
         if ((! this.signature)) {
-            throw new ValueError("Not signed");
+            throw new Error("Not signed");
         }
         return this.shell.head.helpers.preapply.operations.post({"operations": [this.json_payload()]})[0];
     }
