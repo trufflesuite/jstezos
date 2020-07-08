@@ -1,4 +1,4 @@
-import {LexToken, Lexer, lex} from 'ply/lex';
+import {Lexer, lex} from 'ply/lex';
 import {yacc} from 'ply/yacc';
 import * as re from 're';
 import {expand_macro} from './macros';
