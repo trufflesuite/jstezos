@@ -1,23 +1,14 @@
-import {pformat} from 'pprint';
-import {blake2b_32} from 'pytezos/crypto';
-import {ContentMixin} from 'pytezos/operation/content';
-import {forge_operation_group} from 'pytezos/operation/forge';
-import {calculate_fee, default_fee, default_gas_limit, default_storage_limit} from 'pytezos/operation/fees';
-import {OperationResult} from 'pytezos/operation/result';
-import {RpcError} from 'pytezos/rpc/errors';
-import {base58_encode, forge_base58} from 'pytezos/encoding';
-import {Interop} from 'pytezos/interop';
-import {get_class_docstring} from 'pytezos/tools/docstring';
+import {blake2b_32} from '../crypto';
+import {ContentMixin} from './content';
+import {forge_operation_group} from './forge';
+import {calculate_fee, default_fee, default_gas_limit, default_storage_limit} from './fees';
+import {OperationResult} from './result';
+import {RpcError} from '../rpc/errors';
+import {base58_encode, forge_base58} from '../encoding';
+import {Interop} from '../interop';
+import {get_class_docstring} from '../tools/docstring';
 var _pj;
 var validation_passes;
-
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
 
 function _pj_snippets(container) {
     function in_es6(left, right) {
@@ -60,7 +51,7 @@ class OperationGroup extends Interop {
     }
     __repr__() {
         var res;
-        res = [super.__repr__(), "\nPayload", pformat(this.json_payload()), "\nHelpers", get_class_docstring(this.__class__)];
+        res = [super.__repr__(), "\nPayload", JSON.stringify(this.json_payload()), "\nHelpers", get_class_docstring(this.__class__)];
         return "\n".join(res);
     }
     _spawn(kwargs = {}) {
@@ -75,7 +66,7 @@ class OperationGroup extends Interop {
         /*Get binary payload used for injection/hash calculation.
         */
         if ((! this.signature)) {
-            throw new ValueError("Not signed");
+            throw new Error("Not signed");
         }
         return (bytes.fromhex(this.forge()) + forge_base58(this.signature));
     }
@@ -149,7 +140,7 @@ class OperationGroup extends Interop {
         if (validate) {
             remote_data = this.shell.blocks[this.branch].helpers.forge.operations.post(payload);
             if ((local_data !== remote_data)) {
-                throw new ValueError(`Local forge result differs from remote one:
+                throw new Error(`Local forge result differs from remote one:
 
 ${local_data}
 
@@ -199,7 +190,7 @@ ${remote_data}`
         if (any(map((x) => {
     return (validation_passes[x["kind"]] !== validation_pass);
 }, this.contents))) {
-            throw new ValueError("Mixed validation passes");
+            throw new Error("Mixed validation passes");
         }
         if ((validation_pass === 0)) {
             chain_watermark = bytes.fromhex(this.shell.chains.main.watermark());
@@ -227,7 +218,7 @@ ${remote_data}`
         :returns: RPC response from `preapply`
         */
         if ((! this.signature)) {
-            throw new ValueError("Not signed");
+            throw new Error("Not signed");
         }
         return this.shell.head.helpers.preapply.operations.post({"operations": [this.json_payload()]})[0];
     }

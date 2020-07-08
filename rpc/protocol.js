@@ -1,21 +1,9 @@
-import * as pendulum from 'pendulum';
-import {ParserError} from 'pendulum/parsing/exceptions';
-import {datetime} from 'datetime';
-import {count} from 'itertools';
-import {Iterator} from 'typing';
-import {get_attr_docstring} from 'pytezos/tools/docstring';
-import {BlockSliceQuery} from 'pytezos/rpc/search';
-import {RpcQuery} from 'pytezos/rpc/query';
-import {is_bh, is_ogh} from 'pytezos/encoding';
+import {count} from '@aureooms/js-itertools';
+import {get_attr_docstring} from '../tools/docstring';
+import {BlockSliceQuery} from './search';
+import {RpcQuery} from './query';
+import {is_bh, is_ogh} from '../encoding';
 var _pj;
-
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
 
 function _pj_snippets(container) {
     function in_es6(left, right) {
@@ -35,24 +23,13 @@ function _pj_snippets(container) {
 _pj = {};
 _pj_snippets(_pj);
 
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
-
 function to_timestamp(v) {
     try {
-        v = pendulum.parse(v);
+        v = new Date(v);
     } catch(e) {
-        if ((e instanceof ParserError)) {
-        } else {
             throw e;
-        }
     }
-    if ((v instanceof datetime)) {
+    if ((v instanceof Date)) {
         v = Number.parseInt(v.timestamp());
     }
     return v;
@@ -163,7 +140,7 @@ class ContractQuery extends RpcQuery {
         }
         pk = this._parent[pkh].manager_key().get("key");
         if ((! pk)) {
-            throw new ValueError("Public key is not revealed.");
+            throw new Error("Public key is not revealed.");
         }
         return pk;
     }

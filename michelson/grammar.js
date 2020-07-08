@@ -1,17 +1,8 @@
-import {LexToken, Lexer, lex} from 'ply/lex';
+import {Lexer, lex} from 'ply/lex';
 import {yacc} from 'ply/yacc';
 import * as re from 're';
-import * as json from 'json';
-import {expand_macro} from 'pytezos/michelson/macros';
+import {expand_macro} from './macros';
 var _pj;
-
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
 
 function _pj_snippets(container) {
     function set_properties(cls, props) {
@@ -35,15 +26,7 @@ function _pj_snippets(container) {
 _pj = {};
 _pj_snippets(_pj);
 
-function applyMixins(derivedCtor, baseCtors) {
-baseCtors.forEach(baseCtor => {
-Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
-});
-});
-}
-
-class MichelsonParserError extends ValueError {
+class MichelsonParserError extends TypeError {
     constructor(token, message = null) {
         message = (message || `failed to parse expression ${token}`);
         super(MichelsonParserError, self).__init__(message);
@@ -86,7 +69,7 @@ class MichelsonParser extends object {
     }
     p_instr_str(p) {
         /* instr : STR */
-        p[0] = {"string": json.loads(p[1])};
+        p[0] = {"string": JSON.parse(p[1])};
     }
     p_instr_list(p) {
         /* instr : instr SEMI instr */
@@ -182,7 +165,7 @@ class MichelsonParser extends object {
     }
     p_arg_str(p) {
         /* arg : STR */
-        p[0] = {"string": json.loads(p[1])};
+        p[0] = {"string": JSON.parse(p[1])};
     }
     p_arg_subseq(p) {
         /* arg : LEFT_CURLY instr RIGHT_CURLY */
