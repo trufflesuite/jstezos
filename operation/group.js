@@ -1,4 +1,3 @@
-import {pformat} from 'pprint';
 import {blake2b_32} from '../crypto';
 import {ContentMixin} from './content';
 import {forge_operation_group} from './forge';
@@ -52,7 +51,7 @@ class OperationGroup extends Interop {
     }
     __repr__() {
         var res;
-        res = [super.__repr__(), "\nPayload", pformat(this.json_payload()), "\nHelpers", get_class_docstring(this.__class__)];
+        res = [super.__repr__(), "\nPayload", JSON.stringify(this.json_payload()), "\nHelpers", get_class_docstring(this.__class__)];
         return "\n".join(res);
     }
     _spawn(kwargs = {}) {
