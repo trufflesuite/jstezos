@@ -1,6 +1,4 @@
-import * as pendulum from 'pendulum';
-import {ParserError} from 'pendulum/parsing/exceptions';
-import {count} from '@aureooms/js-itertools/src/base/count';
+import {count} from '@aureooms/js-itertools';
 import {get_attr_docstring} from '../tools/docstring';
 import {BlockSliceQuery} from './search';
 import {RpcQuery} from './query';
@@ -27,12 +25,9 @@ _pj_snippets(_pj);
 
 function to_timestamp(v) {
     try {
-        v = pendulum.parse(v);
+        v = new Date(v);
     } catch(e) {
-        if ((e instanceof ParserError)) {
-        } else {
             throw e;
-        }
     }
     if ((v instanceof Date)) {
         v = Number.parseInt(v.timestamp());
