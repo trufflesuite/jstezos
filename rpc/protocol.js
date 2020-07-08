@@ -1,6 +1,6 @@
 import * as pendulum from 'pendulum';
 import {ParserError} from 'pendulum/parsing/exceptions';
-import {count} from 'itertools';
+import {count} from '@aureooms/js-itertools/src/base/count';
 import {get_attr_docstring} from '../tools/docstring';
 import {BlockSliceQuery} from './search';
 import {RpcQuery} from './query';
