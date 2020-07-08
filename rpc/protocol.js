@@ -2,10 +2,10 @@ import * as pendulum from 'pendulum';
 import {ParserError} from 'pendulum/parsing/exceptions';
 import {datetime} from 'datetime';
 import {count} from 'itertools';
-import {get_attr_docstring} from 'pytezos/tools/docstring';
-import {BlockSliceQuery} from 'pytezos/rpc/search';
-import {RpcQuery} from 'pytezos/rpc/query';
-import {is_bh, is_ogh} from 'pytezos/encoding';
+import {get_attr_docstring} from '../tools/docstring';
+import {BlockSliceQuery} from './search';
+import {RpcQuery} from './query';
+import {is_bh, is_ogh} from '../encoding';
 var _pj;
 
 function _pj_snippets(container) {
