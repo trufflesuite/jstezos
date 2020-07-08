@@ -1,13 +1,13 @@
 import {pformat} from 'pprint';
-import {blake2b_32} from 'pytezos/crypto';
-import {ContentMixin} from 'pytezos/operation/content';
-import {forge_operation_group} from 'pytezos/operation/forge';
-import {calculate_fee, default_fee, default_gas_limit, default_storage_limit} from 'pytezos/operation/fees';
-import {OperationResult} from 'pytezos/operation/result';
-import {RpcError} from 'pytezos/rpc/errors';
-import {base58_encode, forge_base58} from 'pytezos/encoding';
-import {Interop} from 'pytezos/interop';
-import {get_class_docstring} from 'pytezos/tools/docstring';
+import {blake2b_32} from '../crypto';
+import {ContentMixin} from './content';
+import {forge_operation_group} from './forge';
+import {calculate_fee, default_fee, default_gas_limit, default_storage_limit} from './fees';
+import {OperationResult} from './result';
+import {RpcError} from '../rpc/errors';
+import {base58_encode, forge_base58} from '../encoding';
+import {Interop} from '../interop';
+import {get_class_docstring} from '../tools/docstring';
 var _pj;
 var validation_passes;
 
